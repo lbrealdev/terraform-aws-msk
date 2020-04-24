@@ -20,7 +20,7 @@ variable "security_group" {
   type        = list(map(string))
   default = [
     {
-      name        = "sg-msk-cluster"
+      name        = "sg.msk_cluster"
       description = "Security group for MSK Cluster."
     }
   ]
