@@ -31,21 +31,25 @@ resource "aws_security_group" "main" {
 }
 
 resource "aws_security_group_rule" "ingress" {
+  count = var.create ? 1 : 0
+
   type              = "ingress"
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
   description       = "Managed by terraform"
   cidr_blocks       = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
-  security_group_id = aws_security_group.main.id
+  security_group_id = aws_security_group.main[count.index].id
 }
 
 resource "aws_security_group_rule" "egress" {
+  count = var.create ? 1 : 0
+
   type              = "egress"
   from_port         = 0
   to_port           = 0
   protocol          = "-1"
   description       = "Managed by terraform"
   cidr_blocks       = ["0.0.0.0/0"]
-  security_group_id = aws_security_group.main.id
+  security_group_id = aws_security_group.main[count.index].id
 }
