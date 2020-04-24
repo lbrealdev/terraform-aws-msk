@@ -25,3 +25,16 @@ variable "security_group" {
     }
   ]
 }
+
+variable "ingress_rules" {
+  type = list(map(string))
+  default = [
+    {
+      type        = "ingress"
+      port        = 0
+      protocol    = "-1"
+      description = ["az1", "az2", "az3"]
+      cidr_blocks = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
+    }
+  ]
+}

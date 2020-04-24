@@ -33,12 +33,12 @@ resource "aws_security_group" "main" {
 resource "aws_security_group_rule" "ingress" {
   count = var.create ? 1 : 0
 
-  type              = "ingress"
-  from_port         = 0
-  to_port           = 0
-  protocol          = "-1"
-  description       = "Managed by terraform"
-  cidr_blocks       = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
+  type              = lookup(var.ingress_rules[count.index], "type", null)
+  from_port         = lookup(var.ingress_rules[count.index], "port", null)
+  to_port           = lookup(var.ingress_rules[count.index], "port", null)
+  protocol          = lookup(var.ingress_rules[count.index], "protocol", null)
+  description       = lookup(var.ingress_rules[count.index], "description", null)
+  cidr_blocks       = lookup(var.ingress_rules[count.index], "cidr_blocks", null)
   security_group_id = aws_security_group.main[count.index].id
 }
 
