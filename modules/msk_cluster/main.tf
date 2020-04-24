@@ -19,7 +19,7 @@ resource "aws_msk_cluster" "main" {
 
   dynamic "broker_node_group_info" {
     iterator = broker_node
-    for_each = var.number_of_broker_nodes
+    for_each = var.broker_node_group_info
     content {
       client_subnets  = ["subnet-0c671f5fecd358c58", "subnet-0a3eae155513483bc"]
       ebs_volume_size = broker_node.value["ebs_volume_size"]
