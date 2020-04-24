@@ -29,10 +29,10 @@ variable "number_of_broker_nodes" {
 
 variable "broker_node_group_info" {
   description = "Configuration block for the broker nodes of the Kafka cluster."
-  type        = list(map(any))
+  type        = list(map(string))
   default = [
     {
-      ebs_volume_size = 10
+      ebs_volume_size = "10"
       instance_type   = "kafka.t3.small"
     }
   ]
