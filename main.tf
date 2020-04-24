@@ -32,4 +32,5 @@ module "msk_cluster" {
   cluster_name           = "msk-terraform"
   kafka_version          = "2.2.1"
   number_of_broker_nodes = 2
+  client_subnets         = module.network.this_subnet_privates
 }
