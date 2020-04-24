@@ -11,10 +11,8 @@ terraform {
 # ---------------------------------------------------------------------------------------------------------------------
 
 resource "aws_msk_configuration" "main" {
-  name              = ""
-  kafka_versions    = []
-  server_properties = <<PROPERTIES
-
-
-PROPERTIES
+  name              = var.name
+  description       = var.description
+  kafka_versions    = var.kafka_versions
+  server_properties = var.server_properties
 }
