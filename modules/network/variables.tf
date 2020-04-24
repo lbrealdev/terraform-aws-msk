@@ -27,7 +27,7 @@ variable "security_group" {
 }
 
 variable "ingress_rules" {
-  type = list(map(string))
+  type = any
   default = [
     {
       type        = "ingress"
