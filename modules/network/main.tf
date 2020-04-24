@@ -45,11 +45,11 @@ resource "aws_security_group_rule" "ingress" {
 resource "aws_security_group_rule" "egress" {
   count = var.create ? 1 : 0
 
-  type              = lookup(var.ingress_rules[count.index], "type", null)
-  from_port         = lookup(var.ingress_rules[count.index], "port", null)
-  to_port           = lookup(var.ingress_rules[count.index], "port", null)
-  protocol          = lookup(var.ingress_rules[count.index], "protocol", null)
-  description       = lookup(var.ingress_rules[count.index], "description", null)
-  cidr_blocks       = lookup(var.ingress_rules[count.index], "cidr_blocks", null)
+  type              = lookup(var.egress_rules[count.index], "type", null)
+  from_port         = lookup(var.egress_rules[count.index], "port", null)
+  to_port           = lookup(var.egress_rules[count.index], "port", null)
+  protocol          = lookup(var.egress_rules[count.index], "protocol", null)
+  description       = lookup(var.egress_rules[count.index], "description", null)
+  cidr_blocks       = lookup(var.egress_rules[count.index], "cidr_blocks", null)
   security_group_id = aws_security_group.main[count.index].id
 }
