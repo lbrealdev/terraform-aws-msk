@@ -29,6 +29,10 @@ resource "aws_msk_cluster" "main" {
     }
   }
 
+  encryption_info {
+    encryption_at_rest_kms_key_arn = var.encryption_at_rest_kms_key_arn
+  }
+
   logging_info {
     broker_logs {
       cloudwatch_logs {
