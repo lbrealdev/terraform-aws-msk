@@ -21,7 +21,7 @@ resource "aws_msk_cluster" "main" {
     iterator = broker_node
     for_each = var.broker_node_group_info
     content {
-      client_subnets  = ["subnet-0c671f5fecd358c58", "subnet-0a3eae155513483bc"]
+      client_subnets  = var.client_subnets
       ebs_volume_size = broker_node.value["ebs_volume_size"]
       instance_type   = broker_node.value["instance_type"]
       security_groups = ["sg-0c148861bfc08dc13"]
