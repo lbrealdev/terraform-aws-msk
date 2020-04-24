@@ -42,7 +42,7 @@ module "msk_cluster" {
 
   cluster_name           = "msk-terraform"
   kafka_version          = "2.2.1"
-  number_of_broker_nodes = 2
+  number_of_broker_nodes = 3
   log_group              = module.cloudwatch.log_group
   client_subnets         = module.network.subnets_private
   security_groups        = module.network.security_group
