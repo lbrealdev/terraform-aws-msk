@@ -49,6 +49,11 @@ variable "security_groups" {
   type        = list(string)
 }
 
+variable "configuration_arn" {
+  description = "Amazon Resource Name (ARN) of the MSK Configuration to use in the cluster."
+  type        = string
+}
+
 variable "log_group" {
   description = "Name of the Cloudwatch Log Group to deliver logs to."
   type        = string

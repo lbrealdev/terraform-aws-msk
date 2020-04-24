@@ -29,6 +29,11 @@ resource "aws_msk_cluster" "main" {
     }
   }
 
+  configuration_info {
+    arn      = var.configuration_arn
+    revision = 1
+  }
+
   # client broker `TLS`,`TLS_PLAINTEXT` or `PLAINTEXT`
   dynamic "encryption_info" {
     iterator = encryption
