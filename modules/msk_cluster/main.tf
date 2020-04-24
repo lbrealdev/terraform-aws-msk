@@ -29,7 +29,7 @@ resource "aws_msk_cluster" "main" {
     }
   }
 
-  # client broker `TLS` or `TLS_PLAINTEXT`
+  # client broker `TLS`,`TLS_PLAINTEXT` or `PLAINTEXT`
   dynamic "encryption_info" {
     iterator = encryption
     for_each = var.encryption_in_transit
