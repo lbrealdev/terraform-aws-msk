@@ -38,3 +38,16 @@ variable "ingress_rules" {
     }
   ]
 }
+
+variable "egress_rules" {
+  type = any
+  default = [
+    {
+      type        = "egress"
+      port        = 0
+      protocol    = "-1"
+      description = "Managed by Terraform"
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+  ]
+}
