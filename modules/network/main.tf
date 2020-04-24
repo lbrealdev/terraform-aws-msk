@@ -35,7 +35,7 @@ resource "aws_security_group" "main" {
       from_port   = ingress.value["port"]
       to_port     = ingress.value["port"]
       protocol    = ingress.value["protocol"]
-      description = ingress.value["description"]
+      description = data.aws_subnet_ids.main.tags["name"]
       cidr_blocks = ingress.value["cidr_blocks"]
     }
   }
