@@ -48,3 +48,8 @@ variable "security_groups" {
   description = "A list of the security groups to associate with the elastic network interfaces to control who can communicate with the cluster."
   type        = list(string)
 }
+
+variable "log_group" {
+  description = "Name of the Cloudwatch Log Group to deliver logs to."
+  type        = string
+}

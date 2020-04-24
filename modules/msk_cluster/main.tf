@@ -29,6 +29,15 @@ resource "aws_msk_cluster" "main" {
     }
   }
 
+  logging_info {
+    broker_logs {
+      cloudwatch_logs {
+        enabled   = true
+        log_group = ""
+      }
+    }
+  }
+
   tags = merge(
     {
       Name = format("%s", var.cluster_name)
