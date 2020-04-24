@@ -54,6 +54,17 @@ variable "log_group" {
   type        = string
 }
 
+variable "encryption_in_transit" {
+  description = "Configuration block to specify encryption in transit."
+  type        = list(map(string))
+  default = [
+    {
+      client_broker = "TLS"
+      in_cluster    = true
+    }
+  ]
+}
+
 variable "encryption_at_rest_kms_key_arn" {
   description = "You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest."
   type        = string

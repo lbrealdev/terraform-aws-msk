@@ -29,8 +29,17 @@ resource "aws_msk_cluster" "main" {
     }
   }
 
-  encryption_info {
-    encryption_at_rest_kms_key_arn = var.encryption_at_rest_kms_key_arn
+  # client broker `TLS` or `TLS_PLAINTEXT`
+  dynamic "encryption_info" {
+    iterator = encryption
+    for_each = var.encryption_in_transit
+    content {
+      encryption_in_transit {
+        in_cluster    = encryption.value["in_cluster"]
+        client_broker = encryption.value["client_broker"]
+      }
+      encryption_at_rest_kms_key_arn = var.encryption_at_rest_kms_key_arn
+    }
   }
 
   logging_info {
