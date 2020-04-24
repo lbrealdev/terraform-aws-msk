@@ -1,4 +1,4 @@
-output "msk_cluster" {
+output "cluster" {
   value = concat(
     aws_msk_cluster.main.*.cluster_name,
     aws_msk_cluster.main.*.id,
