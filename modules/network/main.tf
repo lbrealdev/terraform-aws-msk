@@ -23,24 +23,29 @@ data "aws_subnet_ids" "main" {
 }
 
 resource "aws_security_group" "main" {
+  count = var.create ? 1 : 0
 
   vpc_id      = data.aws_vpc.main.id
-  name        = ""
-  description = ""
+  name        = lookup(var.security_group[count.index], "name", null)
+  description = lookup(var.security_group[count.index], "description", null)
 }
 
 resource "aws_security_group_rule" "ingress" {
-  from_port = 0
-  protocol = ""
-  security_group_id = ""
-  to_port = 0
-  type = ""
+  type              = "ingress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  description       = "Managed by terraform"
+  cidr_blocks       = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
+  security_group_id = aws_security_group.main.id
 }
 
 resource "aws_security_group_rule" "egress" {
-  from_port = 0
-  protocol = ""
-  security_group_id = ""
-  to_port = 0
-  type = ""
+  type              = "egress"
+  from_port         = 0
+  to_port           = 0
+  protocol          = "-1"
+  description       = "Managed by terraform"
+  cidr_blocks       = ["0.0.0.0/0"]
+  security_group_id = aws_security_group.main.id
 }
