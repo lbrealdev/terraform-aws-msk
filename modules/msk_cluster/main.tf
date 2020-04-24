@@ -25,6 +25,7 @@ resource "aws_msk_cluster" "main" {
       ebs_volume_size = broker_node.value["ebs_volume_size"]
       instance_type   = broker_node.value["instance_type"]
       security_groups = ["sg-0c148861bfc08dc13"]
+      az_distribution = broker_node.value["az_distribution"]
     }
   }
 

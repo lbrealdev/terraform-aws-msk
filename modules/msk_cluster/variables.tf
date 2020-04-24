@@ -34,6 +34,7 @@ variable "broker_node_group_info" {
     {
       ebs_volume_size = 10
       instance_type   = "kafka.t3.small"
+      az_distribution = "DEFAULT"
     }
   ]
 }
