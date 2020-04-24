@@ -46,5 +46,6 @@ module "msk_cluster" {
   log_group              = module.cloudwatch.log_group
   client_subnets         = module.network.subnets_private
   security_groups        = module.network.security_group
+  configuration_arn      = module.msk_configuration.configuration_arn
   /*encryption_at_rest_kms_key_arn = "aws/kafka"*/
 }
