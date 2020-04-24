@@ -1,7 +1,7 @@
-output "this_vpc_id" {
+output "vpc_id" {
   value = data.aws_vpc.main.id
 }
 
-output "this_subnet_privates" {
+output "subnets_private" {
   value = data.aws_subnet_ids.main.ids
 }
