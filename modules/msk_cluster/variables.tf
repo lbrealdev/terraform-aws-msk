@@ -65,7 +65,8 @@ variable "encryption_in_transit" {
   ]
 }
 
+/*
 variable "encryption_at_rest_kms_key_arn" {
   description = "You may specify a KMS key short ID or ARN (it will always output an ARN) to use for encrypting your data at rest."
   type        = string
-}
+}*/

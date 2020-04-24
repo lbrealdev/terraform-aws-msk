@@ -38,7 +38,7 @@ resource "aws_msk_cluster" "main" {
         in_cluster    = encryption.value["in_cluster"]
         client_broker = encryption.value["client_broker"]
       }
-      encryption_at_rest_kms_key_arn = var.encryption_at_rest_kms_key_arn
+      /*encryption_at_rest_kms_key_arn = var.encryption_at_rest_kms_key_arn*/
     }
   }
 
