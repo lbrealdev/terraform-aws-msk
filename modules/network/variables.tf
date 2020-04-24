@@ -5,6 +5,6 @@
 
 variable "vpc_id" {
   description = "The current state of the desired VPC. Can be either `pending` or `available`."
-  type = string
-  default = "available"
+  type        = string
+  default     = "available"
 }

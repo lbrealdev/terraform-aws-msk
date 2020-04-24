@@ -38,3 +38,8 @@ variable "broker_node_group_info" {
     }
   ]
 }
+
+variable "client_subnets" {
+  description = "A list of subnets to connect to in client VPC."
+  type        = list(string)
+}
