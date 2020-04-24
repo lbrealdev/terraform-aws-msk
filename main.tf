@@ -22,6 +22,10 @@ module "data_msk" {
   msk_configuration_name = "MskConfigurationClusterDevCaucion"
 }
 
+module "network" {
+  source = "./modules/network"
+}
+
 module "msk_cluster" {
   source = "./modules/msk_cluster"
 
