@@ -28,8 +28,21 @@ resource "aws_security_group" "main" {
   vpc_id      = data.aws_vpc.main.id
   name        = lookup(var.security_group[count.index], "name", null)
   description = lookup(var.security_group[count.index], "description", null)
+
+  dynamic "ingress" {
+    for_each = var.ingress_rules
+    content {
+      from_port   = ingress.value["port"]
+      to_port     = ingress.value["port"]
+      protocol    = ingress.value["protocol"]
+      description = ingress.value["description"]
+      cidr_blocks = ingress.value["cidr_blocks"]
+    }
+  }
+
 }
 
+/*
 resource "aws_security_group_rule" "ingress" {
   count = var.create ? 1 : 0
 
@@ -52,4 +65,4 @@ resource "aws_security_group_rule" "egress" {
   description       = "Managed by terraform"
   cidr_blocks       = ["0.0.0.0/0"]
   security_group_id = aws_security_group.main[count.index].id
-}
+}*/
