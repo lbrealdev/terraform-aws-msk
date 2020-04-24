@@ -32,6 +32,9 @@ module "cloudwatch" {
 
 module "msk_configuration" {
   source = "./modules/msk_configuration"
+
+  name           = "msk-terraform-configuration"
+  kafka_versions = ["2.2.1"]
 }
 
 module "msk_cluster" {
