@@ -115,7 +115,7 @@ resource "aws_security_group" "dynamic_test" {
 
   dynamic "egress" {
     iterator = outbound
-    for_each = length(keys(lookup(var.test[count.index], "ingress", {}))) == 0 ? [] : [lookup(var.test[count.index], "ingress", {})]
+    for_each = length(keys(lookup(var.test[count.index], "egress", {}))) == 0 ? [] : [lookup(var.test[count.index], "egress", {})]
     content {
       to_port     = lookup(outbound.value, "port", null)
       from_port   = lookup(outbound.value, "port", null)
