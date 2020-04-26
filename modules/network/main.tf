@@ -59,7 +59,7 @@ resource "aws_security_group" "test" {
   count = var.create && data.aws_vpc.main != "" ? 1 : 0
 
   vpc_id      = data.aws_vpc.main.id
-  name_prefix = "sg-"
+  name_prefix = "sg.msk-"
   description = "Managed by Terraform"
 
   ingress {
