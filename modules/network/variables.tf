@@ -75,7 +75,7 @@ variable "test" {
     {
       ingress_ecs = {
         type        = "ingress"
-        port        = 0
+        port        = 8080
         protocol    = "-1"
         cidr_blocks = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
       }
