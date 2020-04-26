@@ -63,6 +63,10 @@ variable "test" {
         protocol    = "-1"
         description = "Managed by Terraform"
         cidr_blocks = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
+        description = [
+          "Access from dev.euc1.private-az1.subnet",
+          "Access from dev.euc1.private-az2.subnet"
+        ]
       }
     },
   ]

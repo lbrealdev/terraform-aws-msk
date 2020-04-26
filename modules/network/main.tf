@@ -110,6 +110,7 @@ resource "aws_security_group" "dynamic_test" {
       from_port   = lookup(inbound.value, "port", null)
       protocol    = lookup(inbound.value, "protocol", null)
       cidr_blocks = lookup(inbound.value, "cidr_blocks", null)
+      description = lookup(inbound.value, "description", null)
     }
   }
 }
