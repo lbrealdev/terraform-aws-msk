@@ -61,12 +61,13 @@ variable "test" {
         type        = "ingress"
         port        = 0
         protocol    = "-1"
-        description = "Managed by Terraform"
         cidr_blocks = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
-        description = {
-          az1 = "Managed by Terraform"
-          az2 = "Managed by Terraform1"
-        }
+      },
+      egress = {
+        type        = "egress"
+        port        = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
       }
     },
   ]
