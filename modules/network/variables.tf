@@ -54,7 +54,7 @@ variable "egress_rules" {
 
 
 variable "test" {
-  type = list(map(string))
+  type = any
   default = [
     {
       ingress = {
