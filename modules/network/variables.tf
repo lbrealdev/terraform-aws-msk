@@ -78,6 +78,12 @@ variable "test" {
         port        = 8080
         protocol    = "-1"
         cidr_blocks = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
+      },
+      egress_ecs = {
+        type        = "egress"
+        port        = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
       }
     },
   ]
