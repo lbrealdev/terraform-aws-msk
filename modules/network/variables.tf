@@ -57,7 +57,7 @@ variable "test" {
   type = any
   default = [
     {
-      name        = "sg.msk_cluster"
+      name        = "dev.euc1"
       description = "Security group for MSK Cluster."
       ingress = {
         type        = "ingress"

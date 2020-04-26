@@ -129,7 +129,7 @@ resource "aws_security_group" "dynamic" {
   count = var.create && data.aws_vpc.main != "" ? 1 : 0
 
   vpc_id      = data.aws_vpc.main.id
-  name        = lookup(var.test[count.index], "name", null)
+  name        = "${lookup(var.test[count.index], "name", null)}.ecs-caucion.sg"
   description = lookup(var.test[count.index], "description", null)
 
   dynamic "ingress" {
@@ -139,7 +139,7 @@ resource "aws_security_group" "dynamic" {
       to_port     = lookup(inbound.value, "port", null)
       from_port   = lookup(inbound.value, "port", null)
       protocol    = lookup(inbound.value, "protocol", null)
-      cidr_blocks = lookup(inbound.value, "cidr_blocks", 1)
+      cidr_blocks = lookup(inbound.value, "cidr_blocks", null)
     }
   }
 
