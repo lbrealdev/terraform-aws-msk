@@ -67,7 +67,7 @@ resource "aws_security_group" "test" {
     protocol    = lookup(var.ingress_rules[count.index], "protocol", null)
     to_port     = lookup(var.ingress_rules[count.index], "port", null)
     cidr_blocks = slice(lookup(var.ingress_rules[count.index], "cidr_blocks", null), 0, 1)
-    description = "dev.euc1.private-az1.subnet"
+    description = "Access from dev.euc1.private-az1.subnet"
   }
 
   ingress {
@@ -75,7 +75,7 @@ resource "aws_security_group" "test" {
     protocol    = lookup(var.ingress_rules[count.index], "protocol", null)
     to_port     = lookup(var.ingress_rules[count.index], "port", null)
     cidr_blocks = slice(lookup(var.ingress_rules[count.index], "cidr_blocks", null), 1, 2)
-    description = "dev.euc1.private-az2.subnet"
+    description = "Access from dev.euc1.private-az2.subnet"
   }
 
   ingress {
@@ -83,6 +83,14 @@ resource "aws_security_group" "test" {
     protocol    = lookup(var.ingress_rules[count.index], "protocol", null)
     to_port     = lookup(var.ingress_rules[count.index], "port", null)
     cidr_blocks = slice(lookup(var.ingress_rules[count.index], "cidr_blocks", null), 2, 3)
-    description = "dev.euc1.private-az3.subnet"
+    description = "Access from dev.euc1.private-az3.subnet"
+  }
+
+  egress {
+    from_port   = lookup(var.egress_rules[count.index], "port", null)
+    protocol    = lookup(var.egress_rules[count.index], "protocol", null)
+    to_port     = lookup(var.egress_rules[count.index], "port", null)
+    cidr_blocks = slice(lookup(var.egress_rules[count.index], "cidr_blocks", null), 0, 1)
+    description = "Access internet"
   }
 }
