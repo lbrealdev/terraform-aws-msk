@@ -53,3 +53,20 @@ resource "aws_security_group_rule" "egress" {
   cidr_blocks       = lookup(var.egress_rules[count.index], "cidr_blocks", null)
   security_group_id = aws_security_group.main[count.index].id
 }
+
+
+resource "aws_security_group" "test" {
+  count = var.create && data.aws_vpc.main != "" ? 1 : 0
+
+  vpc_id      = data.aws_vpc.main.id
+  name_prefix = "sg-"
+  description = "Managed by Terraform"
+
+  ingress {
+    from_port   = lookup(var.ingress_rules[count.index], "port", null)
+    protocol    = lookup(var.ingress_rules[count.index], "protocol", null)
+    to_port     = lookup(var.ingress_rules[count.index], "port", null)
+    cidr_blocks = lookup(var.ingress_rules[count.index], "cidr_blocks", 1)
+    description = "dev.euc1.private-az1.subnet"
+  }
+}
