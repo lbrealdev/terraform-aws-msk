@@ -51,3 +51,19 @@ variable "egress_rules" {
     }
   ]
 }
+
+
+variable "test" {
+  type = list(map(string))
+  default = [
+    {
+      ingress = {
+        type        = "ingress"
+        port        = 0
+        protocol    = "-1"
+        description = "Managed by Terraform"
+        cidr_blocks = ["10.156.32.0/26", "10.156.32.64/26", "10.156.32.128/26"]
+      }
+    },
+  ]
+}

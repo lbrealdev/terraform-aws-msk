@@ -94,3 +94,22 @@ resource "aws_security_group" "test" {
     description = "Access internet"
   }
 }
+
+resource "aws_security_group" "dynamic_test" {
+  count = var.create && data.aws_vpc.main != "" ? 1 : 0
+
+  vpc_id      = data.aws_vpc.main.id
+  name        = lookup(var.security_group[count.index], "name", null)
+  description = lookup(var.security_group[count.index], "description", null)
+
+  dynamic "ingress" {
+    iterator = inbound
+    for_each = length(keys(lookup(var.test[count.index], "ingress", {}))) == 0 ? [] : [lookup(var.test[count.index], "ingress", {})]
+    content {
+      to_port     = lookup(inbound.value, "port", null)
+      from_port   = lookup(inbound.value, "port", null)
+      protocol    = lookup(inbound.value, "protocol", null)
+      cidr_blocks = lookup(inbound.value, "cidr_blocks", null)
+    }
+  }
+}
