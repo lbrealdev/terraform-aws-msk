@@ -69,4 +69,12 @@ resource "aws_security_group" "test" {
     cidr_blocks = slice(lookup(var.ingress_rules[count.index], "cidr_blocks", null), 0, 1)
     description = "dev.euc1.private-az1.subnet"
   }
+
+  ingress {
+    from_port   = lookup(var.ingress_rules[count.index], "port", null)
+    protocol    = lookup(var.ingress_rules[count.index], "protocol", null)
+    to_port     = lookup(var.ingress_rules[count.index], "port", null)
+    cidr_blocks = slice(lookup(var.ingress_rules[count.index], "cidr_blocks", null), 0, 2)
+    description = "dev.euc1.private-az2.subnet"
+  }
 }
