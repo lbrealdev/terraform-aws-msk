@@ -54,7 +54,7 @@ variable "egress_rules" {
 
 
 variable "test" {
-  type = list(map(any))
+  type = list(any)
   default = [
     {
       name        = "sg.msk_cluster"
