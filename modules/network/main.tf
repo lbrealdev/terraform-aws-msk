@@ -139,7 +139,7 @@ resource "aws_security_group" "dynamic" {
       to_port     = lookup(inbound.value, "port", null)
       from_port   = lookup(inbound.value, "port", null)
       protocol    = lookup(inbound.value, "protocol", null)
-      cidr_blocks = lookup(inbound.value, "cidr_blocks", null)
+      cidr_blocks = lookup(inbound.value, "cidr_blocks", 1)
     }
   }
 
