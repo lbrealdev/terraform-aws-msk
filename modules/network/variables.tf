@@ -57,6 +57,8 @@ variable "test" {
   type = any
   default = [
     {
+      name        = "test_sg"
+      description = "Terraform"
       ingress = {
         type        = "ingress"
         port        = 0

@@ -99,8 +99,8 @@ resource "aws_security_group" "dynamic_test" {
   count = var.create && data.aws_vpc.main != "" ? 1 : 0
 
   vpc_id      = data.aws_vpc.main.id
-  name        = lookup(var.security_group[count.index], "name", null)
-  description = lookup(var.security_group[count.index], "description", null)
+  name        = lookup(var.test[count.index], "name", null)
+  description = lookup(var.test[count.index], "description", null)
 
   dynamic "ingress" {
     iterator = inbound
