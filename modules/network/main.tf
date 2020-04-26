@@ -124,3 +124,33 @@ resource "aws_security_group" "dynamic_test" {
     }
   }
 }
+
+resource "aws_security_group" "dynamic" {
+  count = var.create && data.aws_vpc.main != "" ? 1 : 0
+
+  vpc_id      = data.aws_vpc.main.id
+  name        = lookup(var.test[count.index], "name", null)
+  description = lookup(var.test[count.index], "description", null)
+
+  dynamic "ingress" {
+    iterator = inbound
+    for_each = length(keys(lookup(var.test[count.index], "ingress_ecs", {}))) == 0 ? [] : [lookup(var.test[count.index], "ingress_ecs", {})]
+    content {
+      to_port     = lookup(inbound.value, "port", null)
+      from_port   = lookup(inbound.value, "port", null)
+      protocol    = lookup(inbound.value, "protocol", null)
+      cidr_blocks = lookup(inbound.value, "cidr_blocks", null)
+    }
+  }
+
+  dynamic "egress" {
+    iterator = outbound
+    for_each = length(keys(lookup(var.test[count.index], "egress", {}))) == 0 ? [] : [lookup(var.test[count.index], "egress", {})]
+    content {
+      to_port     = lookup(outbound.value, "port", null)
+      from_port   = lookup(outbound.value, "port", null)
+      protocol    = lookup(outbound.value, "protocol", null)
+      cidr_blocks = lookup(outbound.value, "cidr_blocks", null)
+    }
+  }
+}
