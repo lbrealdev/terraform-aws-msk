@@ -59,7 +59,6 @@ resource "aws_security_group" "test" {
   count = var.create && data.aws_vpc.main != "" ? 1 : 0
 
   vpc_id      = data.aws_vpc.main.id
-  name        = lookup(var.security_group[count.index], "name", null)
   name_prefix = "sg.msk-"
   description = "Managed by Terraform"
 
