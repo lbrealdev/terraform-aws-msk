@@ -54,11 +54,11 @@ variable "egress_rules" {
 
 
 variable "test" {
-  type = any
+  type = list(map(any))
   default = [
     {
-      name        = "test_sg"
-      description = "Terraform"
+      name        = "sg.msk_cluster"
+      description = "Security group for MSK Cluster."
       ingress = {
         type        = "ingress"
         port        = 0
