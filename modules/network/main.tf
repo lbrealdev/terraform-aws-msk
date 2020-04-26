@@ -134,7 +134,7 @@ resource "aws_security_group" "dynamic" {
 
   dynamic "ingress" {
     iterator = inbound
-    for_each = length(keys(lookup(var.test[count.index][1], "ingress_ecs", {}))) == 0 ? [] : [lookup(var.test[count.index][1], "ingress_ecs", {})]
+    for_each = length(keys(lookup(var.test[1], "ingress_ecs", {}))) == 0 ? [] : [lookup(var.test[1], "ingress_ecs", {})]
     content {
       to_port     = lookup(inbound.value, "port", null)
       from_port   = lookup(inbound.value, "port", null)
